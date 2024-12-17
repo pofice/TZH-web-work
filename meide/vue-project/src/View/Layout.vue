@@ -1,5 +1,54 @@
 <template>
-  <router-view></router-view>
+    <header>
+        <div class="w72 head grid">
+            <img class="head-logo" src="../assets/logo.png" alt="">
+            <div class="hidden">
+                <input type="text" v-model="searchKey">  
+                <button v-on:click="search()">搜索</button>  
+            </div>
+            <button class="login-btn" @click="goToLogin">登录</button>
+            <img src="../assets/search.png" class="head-search" alt="">
+        </div>
+    </header>
+
+    <section class="w72">
+        <div class="grid leibie">
+            <div class="cell-1" @click="searchByCategory('经典著作')">
+                <b>经典著作</b><br>
+                <span>传世之作</span>
+            </div>
+            <div class="cell-1" @click="searchByCategory('社会科学')">
+                <b>社会科学</b><br>
+                <span>走近科学</span>
+            </div>
+            <div class="cell-1" @click="searchByCategory('技术')">
+                <b>技术书籍</b><br>
+                <span>技术进阶</span>
+            </div>
+            <div class="cell-1" @click="searchByCategory('生活')">
+                <b>生活艺术</b><br>
+                <span>品质生活</span>
+            </div>
+            <div class="cell-1" @click="searchByCategory('宠物')">
+                <b>宠物饲养</b><br>
+                <span>爱宠生活</span>
+            </div>     
+        </div>
+
+        <div class="grid product">
+            <div class="cell-1" v-for="item in books">
+                <dl>
+                    <dt><img v-bind:src="'http://localhost:8081/'+item.picture" alt=""></dt>
+                    <dd>{{ item.bookName }}</dd>
+                    <dd class="product-price">￥{{ item.price }}</dd>
+                </dl>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        京公网安备 11000002000088号 | 京ICP备11041704号 | ICP | 药品医疗器械网络服务备案 | 自营医疗器械经营资质 | 药品网络交易第三方平台备案凭证 | 新出发京零 字第大120007号
+    </footer>
 </template>
 
 <script setup>
