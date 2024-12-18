@@ -8,6 +8,7 @@
             </div>
             <div v-if="!currentUser">
                 <button class="login-btn" @click="goToLogin">登录</button>
+                <button class="register-btn" @click="goToRegister">注册</button>
             </div>
             <div v-else class="user-info">
                 <span>欢迎，{{ currentUser.nickname }}</span>
@@ -124,6 +125,11 @@ function searchByCategory(category) {
 // 添加登录跳转方法
 const goToLogin = () => {
     router.push('/login')
+}
+
+// 添加注册跳转方法
+const goToRegister = () => {
+    router.push('/register')
 }
 </script>
 
@@ -339,5 +345,20 @@ a{
 
 .logout-btn:hover {
     background-color: #444;
+}
+
+.register-btn {
+    padding: 5px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+    width: 100px !important;
+}
+
+.register-btn:hover {
+    background-color: #218838;
 }
 </style>

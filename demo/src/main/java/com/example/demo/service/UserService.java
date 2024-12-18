@@ -14,4 +14,12 @@ public class UserService {
     public User login(String account, String pwd) {
         return userMapper.findByAccountAndPwd(account, pwd);
     }
+
+    public boolean register(User user) {
+        if (userMapper.findByAccount(user.getAccount()) != null) {
+            return false; // Account already exists
+        }
+        userMapper.save(user);
+        return true;
+    }
 }
