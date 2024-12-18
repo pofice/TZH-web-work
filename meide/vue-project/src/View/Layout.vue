@@ -6,7 +6,13 @@
                 <input type="text" v-model="searchKey">  
                 <button v-on:click="search()">搜索</button>  
             </div>
-            <button class="login-btn" @click="goToLogin">登录</button>
+            <div v-if="!currentUser">
+                <button class="login-btn" @click="goToLogin">登录</button>
+            </div>
+            <div v-else class="user-info">
+                <span>欢迎，{{ currentUser.nickname }}</span>
+                <button class="logout-btn" @click="handleLogout">退出登录</button>
+            </div>
             <img src="../assets/search.png" class="head-search" alt="">
         </div>
     </header>
@@ -53,10 +59,24 @@
 
 <script setup>
 import axios from "axios";
-import {ref} from 'vue'
+import {ref, onMounted} from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+const currentUser = ref(null)
+
+onMounted(() => {
+    // 从 localStorage 获取用户信息
+    const userStr = localStorage.getItem('user')
+    if (userStr) {
+        currentUser.value = JSON.parse(userStr)
+    }
+})
+
+const handleLogout = () => {
+    localStorage.removeItem('user')
+    currentUser.value = null
+}
 
 var books =ref([]);
 var searchKey = ref("")
@@ -295,9 +315,29 @@ a{
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    width: 100px !important;
 }
 
 .login-btn:hover {
     background-color: #ff3300;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logout-btn {
+    padding: 5px 15px;
+    background-color: #666;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background-color: #444;
 }
 </style>

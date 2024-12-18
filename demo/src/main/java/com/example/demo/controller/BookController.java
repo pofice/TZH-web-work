@@ -1,4 +1,4 @@
-package com.example.demo.controlle;
+package com.example.demo.controller;
 
 import com.example.demo.entity.Book;
 import com.example.demo.mapper.BookMapper;

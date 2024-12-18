@@ -1,14 +1,27 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import axios from 'axios'
 
 const router = useRouter()
 const username = ref('')
 const password = ref('')
 
 const handleLogin = () => {
-    // TODO: 实现登录逻辑
-    console.log('登录请求', username.value, password.value)
+    axios.post("http://localhost:8081/user/login", {
+        account: username.value,
+        pwd: password.value
+    }).then(res => {
+        if (res.data) {
+            // 保存用户信息到 localStorage
+            localStorage.setItem('user', JSON.stringify(res.data))
+            router.push('/')
+        } else {
+            alert('用户名或密码错误')
+        }
+    }).catch(err => {
+        alert('登录失败：' + err)
+    })
 }
 </script>
 
