@@ -325,7 +325,7 @@ a{
 }
 
 .login-btn:hover {
-    background-color: #ff3300;
+    background-color: #218838;
 }
 
 .user-info {
@@ -341,6 +341,7 @@ a{
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    width: 100px !important;
 }
 
 .logout-btn:hover {
