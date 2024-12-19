@@ -12,6 +12,7 @@
             </div>
             <div v-else class="user-info">
                 <span>欢迎，{{ currentUser.nickname }}</span>
+                <button class="user-center-btn" @click="goToUserCenter">个人中心</button>
                 <button class="logout-btn" @click="handleLogout">退出登录</button>
             </div>
             <img src="../assets/search.png" class="head-search" alt="">
@@ -131,6 +132,10 @@ const goToLogin = () => {
 const goToRegister = () => {
     router.push('/register')
 }
+
+const goToUserCenter = () => {
+    router.push('/user/profile')
+}
 </script>
 
 <style scoped>
@@ -191,11 +196,20 @@ a{
         }
         .head-logo{
             height: 60px;
+            transition: transform 0.3s ease;
+        }
+        .head-logo:hover {
+            transform: scale(1.05);
         }
         .head input{
             height: 30px;
             border:1px solid orangered;
             width: 300px;
+            transition: all 0.3s ease;
+        }
+        .head input:focus {
+            box-shadow: 0 0 5px orangered;
+            outline: none;
         }
         .head button{
             height: 30px;
@@ -217,12 +231,15 @@ a{
             text-align: center;
             border-right: 1px solid grey;
             cursor: pointer;
+            transition: all 0.3s ease;
+            transform: translateY(0);
         }
         .leibie>div:nth-of-type(6){
             border-right: 0px solid black;
         }
         .leibie>div:hover{
             color: orangered;
+            transform: translateY(-5px);
             /* background-color: seagreen; */
         }
 
@@ -246,10 +263,13 @@ a{
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0px 0px 10px gray;
+            transition: all 0.3s ease;
+            opacity: 1;
+            transform: scale(1);
         }
         .product .cell-1:hover{
              box-shadow: 0px 0px 15px 5px orangered;
-             
+             transform: scale(1.05);
         }
         .product img{
             width: 100%;
@@ -322,10 +342,13 @@ a{
     border-radius: 4px;
     cursor: pointer;
     width: 100px !important;
+    transition: all 0.3s ease;
 }
 
 .login-btn:hover {
     background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
 .user-info {
@@ -342,10 +365,13 @@ a{
     border-radius: 4px;
     cursor: pointer;
     width: 100px !important;
+    transition: all 0.3s ease;
 }
 
 .logout-btn:hover {
     background-color: #444;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
 .register-btn {
@@ -357,9 +383,29 @@ a{
     cursor: pointer;
     margin-left: 10px;
     width: 100px !important;
+    transition: all 0.3s ease;
 }
 
 .register-btn:hover {
     background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.user-center-btn {
+    padding: 5px 15px;
+    background-color: #2196f3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100px !important;
+    transition: all 0.3s ease;
+}
+
+.user-center-btn:hover {
+    background-color: #1976d2;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 </style>
